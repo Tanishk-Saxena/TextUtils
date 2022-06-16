@@ -1,15 +1,15 @@
 import './App.css';
 import Navbar from './components/Navbar';
-// import About from './components/About';
+import About from './components/About';
 import TextForm from './components/TextForm';
 import React, {useState} from 'react';
 import Alert from './components/Alert';
-// import {
-//   BrowserRouter as Router,
-//   Routes as Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes as Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -45,22 +45,21 @@ function App() {
   }
   return (
     <>
-    {/* <Router>  */}
+    <Router> 
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
       <Alert alert={alert}/>
       <div className="container my-3"> 
-      {/* <Switch> */}
+      <Switch>
           {/* /users --> Component 1
           /users/home --> Component 2
           React router dom uses partial matching unless told otherwise by using the keyword "exact" with path
           This means that if we don't use exact, and go to second path, still component 1 will be rendered.
           Thus, to avoid that we use "exact" */}
-          {/* <Route exact path="/about" element={<About/>}/> */}
-          {/* <Route exact path="/" element={ }/> */}
-          <TextForm heading="Enter the text to analyze below" mode={mode} showAlert={showAlert}/>
-        {/* </Switch> */}
+          <Route exact path="/about" element={<About/>}/>
+          <Route exact path="/" element={<TextForm heading="Enter the text to analyze below" mode={mode} showAlert={showAlert}/>}/>
+        </Switch>
       </div>
-    {/* </Router> */}
+    </Router>
     </>
   );
 }
