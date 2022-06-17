@@ -18,10 +18,10 @@ export default function TextForm(props) {
         props.showAlert("Cleared the input", "success");
     }
     const handleOnCopyClick = () => {
-        var newText=document.getElementById("myBox");
-        newText.select();
-        navigator.clipboard.writeText(newText.value);
-        document.getSelection().removeAllRanges();
+        // var newText=document.getElementById("myBox");
+        // newText.select();
+        navigator.clipboard.writeText(text);
+        // document.getSelection().removeAllRanges();
         props.showAlert("Copied to clipboard!", "success");
     }
     const handleOnAlternatingClick = () => {
@@ -65,7 +65,7 @@ export default function TextForm(props) {
     // text="new text"; //Wrong way to update state
     // setText("new text"); //Correct way to update state
     let tempText=text.trim();
-    let wordsArray=tempText.split(" ");
+    let wordsArray=tempText.split(/\s+  /); //regular expression (javascript feature)
     for(var i=0; i<wordsArray.length; i++){
         if(wordsArray[i]===""){
             wordsArray.splice(i, 1);
