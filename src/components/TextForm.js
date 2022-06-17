@@ -17,6 +17,13 @@ export default function TextForm(props) {
         setText(newText);
         props.showAlert("Cleared the input", "success");
     }
+    const handleOnCopyClick = () => {
+        var newText=document.getElementById("myBox");
+        newText.select();
+        navigator.clipboard.writeText(newText.value);
+        document.getSelection().removeAllRanges();
+        props.showAlert("Copied to clipboard!", "success");
+    }
     const handleOnAlternatingClick = () => {
         let newText="";
         for(var i=0; i<text.length; i+=2){
@@ -76,15 +83,16 @@ export default function TextForm(props) {
     return (
         <>
             <div className="container" style={{color: props.mode==="light"?"black":"white"}}>
-                <h1>{props.heading}</h1>
+                <h1 className="mb-4">{props.heading}</h1>
                 <div className="mb-3">
                     <textarea className="form-control" value={text} placeholder="Enter your text here" onChange={handleOnChange} id="myBox" rows="8" style={{backgroundColor: props.mode==="dark"?"#212529":"white", color:props.mode==="light"?"#212529":"white"}}></textarea>
                 </div>
-                <button className="btn btn-primary mx-1" onClick={handleOnUpperClick}>Convert to UPPER CASE</button>
-                <button className="btn btn-primary mx-1" onClick={handleOnLowerClick}>Convert to lower case</button>
-                <button className="btn btn-primary mx-1" onClick={handleOnAlternatingClick}>Convert to aLtErNaTiNg cAsE</button>
-                <button className="btn btn-primary mx-1" onClick={handleOnSentenceClick}>Convert to Sentence case.</button>
-                <button className="btn btn-primary mx-1" onClick={handleOnClearClick}>Clear</button>
+                <button disabled={tempText.length===0} className="btn btn-primary mx-1 my-1" onClick={handleOnUpperClick}>Convert to UPPER CASE</button>
+                <button disabled={tempText.length===0} className="btn btn-primary mx-1 my-1" onClick={handleOnLowerClick}>Convert to lower case</button>
+                <button disabled={tempText.length===0} className="btn btn-primary mx-1 my-1" onClick={handleOnAlternatingClick}>Convert to aLtErNaTiNg cAsE</button>
+                <button disabled={tempText.length===0} className="btn btn-primary mx-1 my-1" onClick={handleOnSentenceClick}>Convert to Sentence case.</button>
+                <button disabled={tempText.length===0} className="btn btn-primary mx-1 my-1" onClick={handleOnCopyClick}>Copy</button>
+                <button disabled={tempText.length===0} className="btn btn-primary mx-1 my-1" onClick={handleOnClearClick}>Clear</button>
             </div>
             <div className="container my-3" style={{color: props.mode==="light"?"black":"white"}}>
                 <h2>Your text summary</h2>
@@ -92,7 +100,7 @@ export default function TextForm(props) {
                 <p><strong>{sentencesArray.length}</strong> sentences</p>
                 <p><strong>{Math.round(0.008 * wordsArray.length)}</strong> minutes read</p>
                 <h2>Preview</h2>
-                <p>{text.length>0?text:"Enter something in the text-box above to preview here"}</p>
+                <p>{tempText.length>0?text:"Nothing to preview!"}</p>
             </div>
         </>
   )
