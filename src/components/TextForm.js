@@ -65,7 +65,7 @@ export default function TextForm(props) {
     // text="new text"; //Wrong way to update state
     // setText("new text"); //Correct way to update state
     let tempText=text.trim();
-    let wordsArray=tempText.split(/\s+  /); //regular expression (javascript feature)
+    let wordsArray=tempText.split(/\s+{2}/); //regular expression (javascript feature)
     for(var i=0; i<wordsArray.length; i++){
         if(wordsArray[i]===""){
             wordsArray.splice(i, 1);
