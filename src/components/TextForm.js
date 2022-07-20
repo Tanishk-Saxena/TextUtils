@@ -73,11 +73,11 @@ export default function TextForm(props) {
         }
     }
     let sentencesArray=tempText.split(".");
-    for(var i=0; i<sentencesArray.length; i++){
-        sentencesArray[i]=sentencesArray[i].trim();
-        if(sentencesArray[i]===""){
-            sentencesArray.splice(i, 1);
-            i--;
+    for(var j=0; j<sentencesArray.length; j++){
+        sentencesArray[j]=sentencesArray[j].trim();
+        if(sentencesArray[j]===""){
+            sentencesArray.splice(j, 1);
+            j--;
         }
     }
     return (
