@@ -72,7 +72,6 @@ export default function TextForm(props) {
             i--;
         }
     }
-    console.log(wordsArray);
     let sentencesArray=tempText.split(".");
     for(var j=0; j<sentencesArray.length; j++){
         sentencesArray[j]=sentencesArray[j].trim();
